@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dima.mytestingapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activitys.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activitys.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".Activitys.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dima.mytestingapp.Activitys.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".Activitys.HelloUserSplashActivity"
+            android:label="@string/title_activity_hello_user_splash"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activitys.UserActivity"
+            android:label="@string/title_activity_user"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activitys.SetButtonActivity"
+            android:label="@string/title_activity_set_button"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activitys.ButtonGetActivity"
+            android:label="@string/title_activity_button_get"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activitys.ButtonSpendActivity"
+            android:label="@string/title_activity_button_spend"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activitys.EditingActivity" />
+        <activity android:name=".Activitys.EditingLastRecord" />
+        <activity android:name=".Activitys.EditingLastRecordSpend" />
+        <activity
+            android:name=".Activitys.MoneyTransactionActivity"
+            android:label="@string/title_activity_money_transaction"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activitys.ItemStatisticActivity"
+            android:label="@string/title_activity_item_statictic"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Activitys.AddReminderActivity"
+            android:label="@string/title_activity_add_reminder"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".Activitys.ReminderEditActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:label="@string/title_activity_edit_reminder" />
+
+        <receiver android:name=".AlarmReceiver"
+            android:enabled="true">
+
+
+        </receiver>
+
+        <receiver android:name=".BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

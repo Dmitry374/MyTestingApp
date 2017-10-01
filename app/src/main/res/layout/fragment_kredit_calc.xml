@@ -1,0 +1,249 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dima.mytestingapp.fragments.FragmentKreditCalc">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Кредитный калькулятор"
+        android:textSize="20sp"
+        android:id="@+id/textView2" />-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerTypePay"
+                android:entries="@array/typeofpay"
+                android:soundEffectsEnabled="true"
+                android:layout_alignBottom="@+id/textView9"
+                android:layout_toRightOf="@+id/textView6"
+                android:layout_toEndOf="@+id/textView6" />
+
+            <TextView
+                android:text="Размер кредита:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:id="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvOverpayment"
+                android:layout_alignBaseline="@+id/textView13"
+                android:layout_alignBottom="@+id/textView13"
+                android:layout_alignLeft="@+id/tvTotal"
+                android:layout_alignStart="@+id/tvTotal"
+                android:textStyle="normal|bold" />
+
+            <Button
+                android:text="Посчитать"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:id="@+id/btnCalk"
+                android:layout_below="@+id/textView10"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Ежемесячный платеж:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/btnCalk"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/textView11"
+                android:layout_alignEnd="@+id/textView11"
+                android:visibility="invisible" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number|numberDecimal"
+                android:ems="10"
+                android:id="@+id/edInterestRate"
+                android:layout_below="@+id/textView8"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvKredRes"
+                android:textSize="14sp"
+                android:textStyle="normal|bold"
+                android:layout_alignBaseline="@+id/textView5"
+                android:layout_alignBottom="@+id/textView5"
+                android:layout_alignLeft="@+id/edTimeKred"
+                android:layout_alignStart="@+id/edTimeKred" />
+
+            <TextView
+                android:text="Начало выплат:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/textView10"
+                android:layout_below="@+id/spinnerTypePay"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+            <TextView
+                android:text="Срок кредита, месяцев:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/textView7"
+                android:layout_below="@+id/textView6"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Всего будет выплачено:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/textView11"
+                android:textSize="14sp"
+                android:layout_below="@+id/textView5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:visibility="invisible" />
+
+            <TextView
+                android:text="Тип платежа:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:id="@+id/textView9"
+                android:layout_below="@+id/edInterestRate"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTotal"
+                android:layout_alignBaseline="@+id/textView11"
+                android:layout_alignBottom="@+id/textView11"
+                android:layout_alignLeft="@+id/tvKredRes"
+                android:layout_alignStart="@+id/tvKredRes"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="Процентная ставка по кредиту, % годовых:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:id="@+id/textView8"
+                android:layout_below="@+id/edTimeKred"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Дата выплаты кредита:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tvDate"
+                android:textStyle="normal|bold"
+                android:visibility="invisible"
+                android:layout_below="@+id/textView13"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Переплата по кредиту:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/textView13"
+                android:layout_below="@+id/textView11"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:visibility="invisible" />
+
+            <TextView
+                android:text="Валюта кредита:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:id="@+id/textView6"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerKred"
+                android:entries="@array/valutes"
+                android:layout_above="@+id/edTimeKred"
+                android:layout_alignLeft="@+id/edCredSize"
+                android:layout_alignStart="@+id/edCredSize" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/edTimeKred"
+                android:textSize="14sp"
+                android:layout_below="@+id/textView6"
+                android:layout_toRightOf="@+id/edInterestRate"
+                android:layout_toEndOf="@+id/edInterestRate" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/edCredSize"
+                android:textSize="14sp"
+                android:layout_above="@+id/textView6"
+                android:layout_alignRight="@+id/spinnerTypePay"
+                android:layout_alignEnd="@+id/spinnerTypePay" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/edPayBegin"
+                android:hint="Выберите дату"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:layout_alignBaseline="@+id/textView10"
+                android:layout_alignBottom="@+id/textView10"
+                android:layout_alignLeft="@+id/spinnerTypePay"
+                android:layout_alignStart="@+id/spinnerTypePay" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

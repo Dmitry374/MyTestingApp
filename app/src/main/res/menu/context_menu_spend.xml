@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/context_edit_spend"
+        android:title="@string/action_editing_spend" />
+    <item android:id="@+id/context_edit_last_spend"
+        android:title="@string/action_editing_last_spend" />
+    <item android:id="@+id/context_delete_spend"
+        android:title="@string/action_delete_spend" />
+</menu>

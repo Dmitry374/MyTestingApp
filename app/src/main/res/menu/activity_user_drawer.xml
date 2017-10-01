@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_main"
+            android:icon="@drawable/ic_main_24dp"
+            android:title="Главная" />
+        <!--android:icon="@drawable/ic_main2_24dp"-->
+        <item
+            android:id="@+id/nav_kredit_kalc"
+            android:icon="@drawable/ic_kred_kalc_24dp"
+            android:title="Кредитный калькулятор" />
+        <item
+            android:id="@+id/nav_reminder"
+            android:icon="@drawable/ic_reminder_black_24dp"
+            android:title="Напоминалка" />
+    </group>
+
+    <!--<item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Поделиться" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Отправить" />
+        </menu>
+    </item> -->
+
+</menu>

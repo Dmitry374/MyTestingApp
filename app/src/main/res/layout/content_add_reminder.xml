@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:id="@+id/content_add_reminder"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <!--tools:context="com.example.dima.money1click.Activitys.AddReminderActivity"-->
+    <!--tools:showIn="@layout/activity_add_reminder">-->
+
+<!--</RelativeLayout>-->
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_add_reminder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.dima.mytestingapp.Activitys.AddReminderActivity"
+    tools:showIn="@layout/activity_add_reminder">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/add_reminder_layout_top"
+        android:background="@drawable/toolbar_dropshadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/add_reminder_layout_top"
+        android:background="@color/edTxtColor"
+        android:orientation="vertical"
+        android:layout_height="148dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/edTitle"
+            android:layout_marginLeft="72dp"
+            android:hint="Напоминание"
+            android:textSize="25dp"
+            android:lines="4"
+            android:textColorHint="@color/colorWhite"
+            android:minLines="4"
+            android:gravity="top|left"
+            android:textColor="@android:color/white"
+            android:scrollHorizontally="false"
+            android:inputType="textCapWords|textMultiLine"
+            android:layout_marginRight="16dp"
+            android:layout_height="120dp"/>
+
+    </LinearLayout>
+
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/add_reminder_layout_top"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/bcgInput"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="Детали"
+                android:id="@+id/details"
+                android:textSize="15dp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="72dp"
+                android:layout_height="72dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:onClick="setDate"
+                android:id="@+id/date"
+                android:background="@color/selectedItem"
+                android:layout_height="72dp">
+
+                <ImageView
+                    android:id="@+id/date_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@mipmap/ic_view_day_grey"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/date_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/date_text"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="Дата" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/set_date"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:onClick="setTime"
+                android:id="@+id/time"
+                android:background="@color/selectedItem"
+                android:layout_height="72dp">
+
+                <ImageView
+                    android:id="@+id/time_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@mipmap/ic_access_time_grey"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/time_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/time_text"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="Время" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/set_time"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/RepeatType"
+                android:clickable="true"
+                android:onClick="selectRepeatType"
+                android:background="@color/selectedItem"
+                android:layout_height="72dp">
+
+                <ImageView
+                    android:id="@+id/repeat_type_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@mipmap/ic_subject_grey"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/repeat_type_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/repeat_type_text"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="Повторение" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/set_repeat_type"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/remindIcon"
+                android:clickable="true"
+                android:onClick="selectIcon"
+                android:background="@color/selectedItem"
+                android:layout_height="72dp">
+
+                <ImageView
+                    android:id="@+id/remindImgIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@mipmap/ic_remind_icon_24dp"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/remindImgIcon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/img_icon_text"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="Иконка напоминания" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/set_repeat_icon"
+                        android:textSize="15dp"
+                        android:text="Без метки"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/remindSound"
+                android:clickable="true"
+                android:onClick="selectSound"
+                android:background="@color/selectedItem"
+                android:layout_height="72dp">
+
+                <ImageView
+                    android:id="@+id/remindImgSound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@mipmap/ic_remind_sound"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/remindImgSound"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/sound_text"
+                        android:layout_width="wrap_content"
+                        android:textSize="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="Звук напоминания" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/set_sound"
+                        android:textSize="15sp"
+                        android:text=""
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

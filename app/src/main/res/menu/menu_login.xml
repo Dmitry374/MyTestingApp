@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.dima.money1click.Activitys.LoginActivity">
+
+    <item
+        android:id="@+id/action_site"
+        android:orderInCategory="100"
+        android:title="@string/action_site"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_support"
+        android:orderInCategory="100"
+        android:title="@string/action_support"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="100"
+        android:title="@string/title_activity_help"
+        app:showAsAction="never" />
+</menu>

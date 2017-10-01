@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relChild"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginStart="10dp"-->
+        <!--android:layout_alignTop="@+id/imgReminder"-->
+        <!--android:layout_toRightOf="@+id/imgReminder"-->
+        <!--android:layout_toEndOf="@+id/imgReminder">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tvTitle"-->
+            <!--android:textColor="@color/textColorBlack"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:ellipsize="end"-->
+            <!--android:maxLines="2"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Title"-->
+            <!--android:textSize="16dp"-->
+            <!--android:textStyle="normal|bold"-->
+            <!--android:textAllCaps="false" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tvDateTime"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:textColor="@color/textColorBlack"-->
+            <!--android:ellipsize="marquee"-->
+            <!--android:singleLine="true"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="13dp"-->
+            <!--android:text="Date and Time"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tvRepeatInfo"-->
+            <!--android:textColor="@color/textColorBlack"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:ellipsize="marquee"-->
+            <!--android:singleLine="true"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="13dp"-->
+            <!--android:text="Repeat No and Type"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<ImageView-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginLeft="30dp"-->
+        <!--android:id="@+id/imgReminder"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginStart="30dp" />-->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/linListLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:textColor="@color/textColorBlack"
+                android:layout_width="match_parent"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="16dp"
+                android:textStyle="normal|bold"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linListLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/imgReminder"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@mipmap/ic_list_time"
+                android:id="@+id/imageView2"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgReminder"
+                android:layout_toEndOf="@+id/imgReminder" />
+
+            <TextView
+                android:id="@+id/tvReminderTime"
+                android:text="Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView2"
+                android:layout_toEndOf="@+id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imgDate"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tvReminderTime"
+                android:layout_toEndOf="@+id/tvReminderTime"
+                app:srcCompat="@mipmap/ic_list_date" />
+
+            <TextView
+                android:text="Date"
+                android:id="@+id/tvReminderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgDate"
+                android:layout_toEndOf="@+id/imgDate"/>
+
+            <ImageView
+                android:id="@+id/imgReminderRepeat"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tvReminderDate"
+                android:layout_toEndOf="@+id/tvReminderDate"
+                app:srcCompat="@mipmap/ic_list_repeat" />
+
+            <TextView
+                android:text="Repeat"
+                android:id="@+id/tvReminderRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgReminderRepeat"
+                android:layout_toEndOf="@+id/imgReminderRepeat"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

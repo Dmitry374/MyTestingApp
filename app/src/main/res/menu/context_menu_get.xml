@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/context_edit_get"
+        android:title="@string/action_editing_get" />
+    <item android:id="@+id/context_edit_last_get"
+        android:title="@string/action_editing_last_get" />
+    <item android:id="@+id/context_money_transaction"
+        android:title="@string/action_money_transaction" />
+    <item android:id="@+id/context_delete_get"
+        android:title="@string/action_delete_get" />
+</menu>

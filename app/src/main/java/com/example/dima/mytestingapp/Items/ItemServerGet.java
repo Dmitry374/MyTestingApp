@@ -1,0 +1,69 @@
+package com.example.dima.mytestingapp.Items;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * Created by Dima on 09.09.2017.
+ */
+
+public class ItemServerGet {
+
+    @SerializedName("get_name")
+    @Expose
+    private String name;
+    @SerializedName("get_image")
+    @Expose
+    private String image;
+    @SerializedName("kol_get")
+    @Expose
+    private String kol;
+    @SerializedName("ref_login")
+    @Expose
+    private String refLogin;
+    @SerializedName("local_id")
+    @Expose
+    private String localId;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getKol() {
+        return kol;
+    }
+
+    public void setKol(String kol) {
+        this.kol = kol;
+    }
+
+    public String getRefLogin() {
+        return refLogin;
+    }
+
+    public String getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(String localId) {
+        this.localId = localId;
+    }
+
+    public void setRefLogin(String refLogin) {
+        this.refLogin = refLogin;
+
+
+    }
+}

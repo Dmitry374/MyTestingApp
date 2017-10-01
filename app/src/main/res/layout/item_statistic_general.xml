@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:gravity="center_vertical">
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="50dp"
+                android:id="@+id/tvStatDateGeneral"
+                android:text="Date">
+            </TextView>
+
+            <TextView
+                android:layout_width="50dp"
+                android:id="@+id/tvStatCountGeneral"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:gravity="center"
+                android:text="Count" >
+            </TextView>
+
+            <TextView
+                android:layout_width="50dp"
+                android:id="@+id/tvStatOnGetGeneral"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="pay from">
+            </TextView>
+
+            <TextView
+                android:layout_width="50dp"
+                android:id="@+id/tvStatGeneral"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="pay to">
+            </TextView>
+        </TableRow>
+
+    </TableLayout>
+
+    <!--<GridView-->
+        <!--android:id="@+id/gridForListView"-->
+        <!--android:numColumns="4"-->
+        <!--android:columnWidth="50dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center">-->
+
+    <!--</GridView>-->
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical">
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:collapseColumns="4"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:layout_gravity="center_vertical">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="date"
+                android:id="@+id/tvStatDateSpendGen"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="count"
+                android:id="@+id/tvStatCountSpendGen"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/tvStatSpendOnGetGeneral"
+                android:text="Get"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_marginRight="3dp"
+                android:layout_marginEnd="3dp"/>
+
+            <TextView
+                android:layout_gravity="right"
+                android:text="OnSpend"
+                android:id="@+id/tvStatSpendGeneral"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+    </TableLayout>
+
+
+
+</LinearLayout>

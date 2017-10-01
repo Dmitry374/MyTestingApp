@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_editing_last_record"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.dima.mytestingapp.Activitys.EditingLastRecord">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:text="Редактирование последней введеннной суммы"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNameEdLast"
+                android:textSize="18sp" />
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|numberDecimal"
+                android:ems="10"
+                android:id="@+id/edNewSum"
+                android:hint="Новая сумма" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="70dp"
+                android:gravity="center">
+
+                <Button
+                    android:text="Готово"
+                    android:layout_width="50pt"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/btnNewSumApply"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:text="Отмена"
+                    android:layout_width="50pt"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnNewSumCancel"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

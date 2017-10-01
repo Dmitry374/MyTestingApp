@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimary">#009e1d</color>-->
+    <color name="colorPrimaryDark">#303F9F</color>
+    <!--<color name="colorPrimary">#39a5df</color>-->
+    <color name="colorPrimary">#5461d6</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--<color name="colorLine">#33ff00</color>-->
+    <color name="colorLine">#2eb302</color>
+
+    <color name="accent">#78909c</color>
+    <color name="fab_pressed">#546e7a</color>
+
+
+    <color name="edTxtColor">#999ea7</color>
+    <color name="bcgInput">#ffffff</color>
+    <color name="selectedItem">#ffffff</color>
+    <color name="fabColor">#00DAFF</color>
+    <color name="textColorBlack">#313131</color>
+    <color name="colorWhite">#ffffff</color>
+
+    <color name="bcgGroupColor">#efefef</color>
+
+    <color name="colorTextGreen">#008327</color>
+    <color name="colorTextRed">#f9000c</color>
+    <color name="colorTextBlack">#000000</color>
+
+    <color name="orange">#FF9900</color>
+    <color name="green">#009900</color>
+    <color name="red">#ed000c</color>
+
+</resources>

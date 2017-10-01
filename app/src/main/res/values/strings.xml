@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">MyTestingApp</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_site">Сайт</string>
+    <string name="action_support">Тех. Поддержка</string>
+    <string name="action_exit">Выход</string>
+    <string name="title_activity_help">Помощь</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="action_editing_get">Редактирование</string>
+    <string name="action_editing_last_get">Последние изменения</string>
+    <string name="action_money_transaction">Перевод</string>
+    <string name="action_delete_get">Удалить</string>
+
+    <string name="action_editing_spend">Редактирование</string>
+    <string name="action_editing_last_spend">Последние изменения</string>
+    <string name="action_delete_spend">Удалить</string>
+
+    <string-array name="males">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
+    <string name="title_activity_hello_user_splash">HelloUserSplashActivity</string>
+    <string name="title_activity_user">UserActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="no_reminders">Напоминай нет !!! Добавьте новое напоминание !!!</string>
+    <string name="no_statistic_data">В данный промежуток времени операций не производилось !!!</string>
+
+    <string name="action_discard_reminder">Discard Reminder</string>
+    <string name="action_save_reminder">Save Reminder</string>
+
+    <string name="title_activity_edit_reminder">Edit Reminder</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="main">Главная</string>
+
+    <string-array name="valutes">
+        <item>руб.</item>
+        <item>дол.</item>
+        <item>евр.</item>
+    </string-array>
+
+    <string-array name="typeofpay">
+        <item>Аннуитетный</item>
+        <item>Дифференцированный</item>
+    </string-array>
+
+    <string-array name="month">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
+
+    <string-array name="year">
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+    </string-array>
+
+    <string-array name="dateofpay">
+        <item>Май 2017</item>
+        <item>Июнь 2017</item>
+        <item>Июль 2017</item>
+        <item>Август 2017</item>
+        <item>Сентябрь 2017</item>
+        <item>Октябрь 2017</item>
+        <item>Ноябрь 2017</item>
+        <item>Декабрь 2017</item>
+    </string-array>
+    <string name="title_activity_set_button">SetButtonActivity</string>
+    <string name="title_activity_button_get">ButtonGetActivity</string>
+    <string name="title_activity_button_spend">ButtonSpendActivity</string>
+    <string name="title_activity_money_transaction">MoneyTransactionActivity</string>
+    <string name="title_activity_item_statictic">ItemStaticticActivity</string>
+    <string name="title_activity_add_reminder">AddReminderActivity</string>
+</resources>
