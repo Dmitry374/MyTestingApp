@@ -50,8 +50,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     String gender;
 
-    int countEmail;  //  Колисество строк в таблице "user" гле одинаковый email (если > 0, то выводим Toast)
-    int countLogin;  //  Колисество строк в таблице "user" гле одинаковый login (если > 0, то выводим Toast)
+    int countEmail = 0;  //  Колисество строк в таблице "user" гле одинаковый email (если > 0, то выводим Toast)
+    int countLogin = 0;  //  Колисество строк в таблице "user" гле одинаковый login (если > 0, то выводим Toast)
 
     SQLiteDatabase database;
 

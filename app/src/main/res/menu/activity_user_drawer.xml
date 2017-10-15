@@ -12,6 +12,10 @@
             android:icon="@drawable/ic_kred_kalc_24dp"
             android:title="Кредитный калькулятор" />
         <item
+            android:id="@+id/nav_statistic"
+            android:icon="@drawable/ic_statistic_black_24dp"
+            android:title="Статистика" />
+        <item
             android:id="@+id/nav_reminder"
             android:icon="@drawable/ic_reminder_black_24dp"
             android:title="Напоминалка" />

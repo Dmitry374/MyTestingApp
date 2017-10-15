@@ -33,6 +33,7 @@ import com.example.dima.mytestingapp.api.ServerApi;
 import com.example.dima.mytestingapp.fragments.FragmentKreditCalc;
 import com.example.dima.mytestingapp.fragments.FragmentMain;
 import com.example.dima.mytestingapp.fragments.FragmentReminder;
+import com.example.dima.mytestingapp.fragments.FragmentStatistic;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -58,6 +59,7 @@ public class UserActivity extends AppCompatActivity
 
     FragmentMain fmain;
     FragmentKreditCalc fkrditcalk;
+    FragmentStatistic fstatistic;
     FragmentReminder freminder;
 
     TextView tvUserName;
@@ -175,6 +177,7 @@ public class UserActivity extends AppCompatActivity
 
         fmain = new FragmentMain();
         fkrditcalk = new FragmentKreditCalc();
+        fstatistic = new FragmentStatistic();
         freminder = new FragmentReminder();
 
 //        Определение Header для его измениния
@@ -568,11 +571,13 @@ public class UserActivity extends AppCompatActivity
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         if (id == R.id.nav_main) {
-            Toast.makeText(this, "Главная", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Главная", Toast.LENGTH_SHORT).show();
             fragmentTransaction.replace(R.id.content_user, fmain);
         }
         else if (id == R.id.nav_kredit_kalc) {
             fragmentTransaction.replace(R.id.content_user, fkrditcalk);
+        } else if (id == R.id.nav_statistic) {
+            fragmentTransaction.replace(R.id.content_user, fstatistic);
         } else if (id == R.id.nav_reminder) {
             fragmentTransaction.replace(R.id.content_user, freminder, "FragmentReminder");
         }

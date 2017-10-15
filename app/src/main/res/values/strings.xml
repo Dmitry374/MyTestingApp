@@ -90,4 +90,7 @@
     <string name="title_activity_money_transaction">MoneyTransactionActivity</string>
     <string name="title_activity_item_statictic">ItemStaticticActivity</string>
     <string name="title_activity_add_reminder">AddReminderActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
