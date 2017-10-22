@@ -24,9 +24,6 @@ public class DBHelper extends SQLiteOpenHelper {
     //    Table user
     public static final String KEY_ID = "_id";
     public static final String KEY_NAME = "name";
-    public static final String KEY_SURNAME = "surname";
-    public static final String KEY_PATRONYMIC = "patronymic"; // Отчество
-    public static final String KEY_GENDER = "gender";
 
     public static final String KEY_DATE_OF_BIRTH = "date_of_birth";
 
@@ -95,9 +92,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + TABLE_USER + "("
                 + KEY_ID + " integer primary key autoincrement,"
                 + KEY_NAME + " text not null, "
-                + KEY_SURNAME + " text not null, "
-                + KEY_PATRONYMIC + " text not null, "
-                + KEY_GENDER + " text not null, "
                 + KEY_DATE_OF_BIRTH + " text not null, "
                 + KEY_MOBILE + " text not null, "
                 + KEY_EMAIL + " text not null unique, "

@@ -149,6 +149,8 @@ public class FragmentMain extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    Double countSpendTotal = 0.0;
+
 
 
 
@@ -834,6 +836,8 @@ public class FragmentMain extends Fragment {
 
                     db.insert(DBHelper.TABLE_SPEND, null, contentValues);
 
+                    countSpendTotal = countSpendTotal + Double.parseDouble(kol);
+
                     contentValues.clear();
                 }
 
@@ -856,6 +860,8 @@ public class FragmentMain extends Fragment {
                         btnNameSpend = cursorGridViewSpend.getString(cursorGridViewSpend.getColumnIndex(DBHelper.KEY_SPEND_NAME));
                         imgBtnSpend = cursorGridViewSpend.getInt(cursorGridViewSpend.getColumnIndex(DBHelper.KEY_SPEND_IMAGE));
                         btnOnCountSpend = cursorGridViewSpend.getString(cursorGridViewSpend.getColumnIndex(DBHelper.KEY_KOL_SPEND));
+
+//                        countSpendTotal = countSpendTotal + Double.parseDouble(btnOnCountSpend);
 
                         Log.d("myLogs", "btnName = " + btnNameSpend + " imgBtn = " + imgBtnSpend + " btnOnCount = " + btnOnCountSpend);
 
@@ -910,7 +916,7 @@ public class FragmentMain extends Fragment {
                     contentValues.clear();
                 }
 
-                tvGetSpend.setText("Получил " + kol + " руб. Потратил " + countSpendTable + " руб.");
+                tvGetSpend.setText("Получил " + kol + " руб. Потратил " + countSpendTotal + " руб.");
             }
 
             @Override

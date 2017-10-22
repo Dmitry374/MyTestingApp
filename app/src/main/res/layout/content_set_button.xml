@@ -40,14 +40,15 @@
         android:id="@+id/spinnerImages" />
 
     <Button
-        android:text="Добавить"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnApply"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edBtnName"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="54dp"
-        android:id="@+id/btnApply" />
+        android:text="Добавить" />
 
 
 </LinearLayout>

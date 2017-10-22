@@ -87,13 +87,13 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"/>
 
-                <Button
-                    android:text="График по"
-                    android:layout_width="50pt"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnGetChart"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"/>
+                <!--<Button-->
+                    <!--android:text="График по"-->
+                    <!--android:layout_width="50pt"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/btnGetChart"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:layout_weight="1"/>-->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

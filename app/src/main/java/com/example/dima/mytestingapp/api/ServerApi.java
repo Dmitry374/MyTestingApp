@@ -39,12 +39,9 @@ public interface ServerApi {
     );
 
     @FormUrlEncoded
-    @POST("/server_register_post_inf.php/")
+    @POST("/server_register_post_inf_2.php/")
     Call<List<ItemServerData>> saveDataUser(
             @Field("name_post") String name,
-            @Field("surname_post") String surname,
-            @Field("patronymic_post") String patronymic,
-            @Field("gender_post") String gender,
             @Field("date_of_birth_post") String date_of_birth,
             @Field("mobile_phone_post") String mobile_phine,
             @Field("email_post") String email,
@@ -54,7 +51,7 @@ public interface ServerApi {
     );
 
     @FormUrlEncoded
-    @POST("/server_logining_inf.php/")
+    @POST("/server_logining_inf_2.php/")
     Call<List<ItemServerData>> loginUser(
             @Field("login_post") String login,
             @Field("password_post") String password
@@ -71,7 +68,7 @@ public interface ServerApi {
 //    );
 
     @FormUrlEncoded
-    @POST("/server_sign_in_upd.php/")
+    @POST("/server_sign_in_upd_2.php/")
     Call<Void> updateIsSign(
             @Field("login_post") String login,
             @Field("key_sign_post") String keySign
@@ -314,12 +311,9 @@ public interface ServerApi {
 //    --------- Synchronise --------------
 
     @FormUrlEncoded
-    @POST("/server_update_user.php/")
+    @POST("/server_update_user_2.php/")
     Call<Void> updateUserTable(
             @Field("name_user") String userName,
-            @Field("surname_user") String userSurname,
-            @Field("patronymic_user") String userPatronymic,
-            @Field("gender_user") String userGender,
             @Field("date_of_birth_user") String userDateOfBirth,
             @Field("mobile_user") String userMobile,
             @Field("email_user") String userEmail,

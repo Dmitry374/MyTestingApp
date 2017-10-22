@@ -100,13 +100,13 @@
                     android:id="@+id/btnSpendStatistics"
                     android:layout_weight="1"/>
 
-                <Button
-                    android:text="График по"
-                    android:layout_width="50pt"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/btnSpendChart"
-                    android:layout_weight="1"/>
+                <!--<Button-->
+                    <!--android:text="График по"-->
+                    <!--android:layout_width="50pt"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:id="@+id/btnSpendChart"-->
+                    <!--android:layout_weight="1"/>-->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

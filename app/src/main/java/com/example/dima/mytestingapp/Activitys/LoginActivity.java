@@ -204,16 +204,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(Call<List<ItemServerData>> call, Response<List<ItemServerData>> response) {
 
-                        String nameFromServ = null, surnameFromServ = null, patronymicFromServ = null, genderFromServ = null,
+                        String nameFromServ = null,
                                 dateOfBirthFromServ = null, mobilePhoneFromServ = null,
                                 emailFromServ = null, loginFromServ = null, passwordFromServ = null, keySignFromServ = null;
 
 //                            Прием данных обратно с сервера
                         for (int i = 0; i < response.body().size(); i++){
                             nameFromServ = response.body().get(i).getName();
-                            surnameFromServ = response.body().get(i).getSurname();
-                            patronymicFromServ = response.body().get(i).getPatronymic();
-                            genderFromServ = response.body().get(i).getGender();
                             dateOfBirthFromServ = response.body().get(i).getDateOfBirth();
                             mobilePhoneFromServ = response.body().get(i).getMobilePhone();
                             emailFromServ = response.body().get(i).getEmail();
@@ -223,9 +220,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
 
                         contentValues.put(DBHelper.KEY_NAME, nameFromServ);
-                        contentValues.put(DBHelper.KEY_SURNAME, surnameFromServ);
-                        contentValues.put(DBHelper.KEY_PATRONYMIC, patronymicFromServ);
-                        contentValues.put(DBHelper.KEY_GENDER, genderFromServ);
                         contentValues.put(DBHelper.KEY_DATE_OF_BIRTH, dateOfBirthFromServ);
                         contentValues.put(DBHelper.KEY_MOBILE, mobilePhoneFromServ);
                         contentValues.put(DBHelper.KEY_EMAIL, emailFromServ);

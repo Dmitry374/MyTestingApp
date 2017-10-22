@@ -34,6 +34,7 @@ import com.example.dima.mytestingapp.fragments.FragmentKreditCalc;
 import com.example.dima.mytestingapp.fragments.FragmentMain;
 import com.example.dima.mytestingapp.fragments.FragmentReminder;
 import com.example.dima.mytestingapp.fragments.FragmentStatistic;
+import com.example.dima.mytestingapp.fragments.FragmentExchangeRates;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -61,6 +62,7 @@ public class UserActivity extends AppCompatActivity
     FragmentKreditCalc fkrditcalk;
     FragmentStatistic fstatistic;
     FragmentReminder freminder;
+    FragmentExchangeRates fexhangerate;
 
     TextView tvUserName;
     TextView emailUser;
@@ -79,7 +81,7 @@ public class UserActivity extends AppCompatActivity
     final String SAVED_TEXT = "saved_text";
 
 
-    SharedPreferences sPrefLogin, sPrefUserName, sPrefEmail;
+    SharedPreferences sPrefLogin, sPrefUserName, sPrefEmail, sPrefSelection;
 
     String sLogin;  // SharedPreferences для login
     String sUserName;  // SharedPreferences для userName
@@ -179,6 +181,7 @@ public class UserActivity extends AppCompatActivity
         fkrditcalk = new FragmentKreditCalc();
         fstatistic = new FragmentStatistic();
         freminder = new FragmentReminder();
+        fexhangerate = new FragmentExchangeRates();
 
 //        Определение Header для его измениния
         View header = navigationView.getHeaderView(0);
@@ -201,7 +204,7 @@ public class UserActivity extends AppCompatActivity
         sPrefEmail = getSharedPreferences("SharedPrefEmail", MODE_PRIVATE);
         email = sPrefEmail.getString("save_email", "");
 
-        Toast.makeText(this, login + " " + userName + " " + email, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, login + " " + userName + " " + email, Toast.LENGTH_SHORT).show();
 
 
         contentValues = new ContentValues();
@@ -242,6 +245,11 @@ public class UserActivity extends AppCompatActivity
                 SharedPreferences.Editor edPrefEmail = sPrefEmail.edit();
                 edPrefEmail.putString("save_email", "");
                 edPrefEmail.commit();
+
+                sPrefSelection = getSharedPreferences("SharedPrefSelection",MODE_PRIVATE);
+                SharedPreferences.Editor edPrefSelection = sPrefSelection.edit();
+                edPrefSelection.putInt("save_selection", 1);
+                edPrefSelection.commit();
 //            -----------------------------------------------------------------------
 
 
@@ -409,6 +417,10 @@ public class UserActivity extends AppCompatActivity
             if (fragmentName.equals("freminder")){
                 fragmentTransaction.replace(R.id.content_user, freminder);
             }
+
+            if (fragmentName.equals("frates")){
+                fragmentTransaction.replace(R.id.content_user, fexhangerate);
+            }
             fragmentTransaction.commit();
         } catch (java.lang.NullPointerException e){
             fragmentTransaction.replace(R.id.content_user, fmain);
@@ -424,6 +436,12 @@ public class UserActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+
+//            Ставится в настройки для диалога валют выбор индекса с EUR
+            sPrefSelection = getSharedPreferences("SharedPrefSelection",MODE_PRIVATE);
+            SharedPreferences.Editor edPrefSelection = sPrefSelection.edit();
+            edPrefSelection.putInt("save_selection", 1);
+            edPrefSelection.commit();
 
 //              Выход из всего приложения
 //          finishAffinity();
@@ -580,6 +598,8 @@ public class UserActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_user, fstatistic);
         } else if (id == R.id.nav_reminder) {
             fragmentTransaction.replace(R.id.content_user, freminder, "FragmentReminder");
+        } else if (id == R.id.nav_exchange_rate) {
+            fragmentTransaction.replace(R.id.content_user, fexhangerate);
         }
         fragmentTransaction.commit();
 
@@ -624,23 +644,19 @@ public class UserActivity extends AppCompatActivity
                 + " where " + DBHelper.KEY_LOGIN + " =? AND " + DBHelper.KEY_SYNCHRONISE + " =?";
         Cursor cursor = db.rawQuery(sql, new String[]{login, "no"});
 
-        userId = 0; String nameUser = "", surnameUser = "", patronymicUser = "",
-                genderUser = "", dateOfBirthUser = "", mobileUser = "", emailUser = "", loginUser = "",
+        userId = 0; String nameUser = "", dateOfBirthUser = "", mobileUser = "", emailUser = "", loginUser = "",
                 passwordUser = "";
         if (cursor.moveToFirst()) {
             do {
                 userId = cursor.getInt(cursor.getColumnIndex(DBHelper.KEY_ID));
                 nameUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_NAME));
-                surnameUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_SURNAME));
-                patronymicUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_PATRONYMIC));
-                genderUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_GENDER));
                 dateOfBirthUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_DATE_OF_BIRTH));
                 mobileUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_MOBILE));
                 emailUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_EMAIL));
                 loginUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_LOGIN));
                 passwordUser = cursor.getString(cursor.getColumnIndex(DBHelper.KEY_PASSWORD));
 
-                Call<Void> userUpd = serverApi.updateUserTable(nameUser, surnameUser, patronymicUser, genderUser,
+                Call<Void> userUpd = serverApi.updateUserTable(nameUser,
                         dateOfBirthUser, mobileUser, emailUser, loginUser, passwordUser);
 
                 userUpd.enqueue(new Callback<Void>() {

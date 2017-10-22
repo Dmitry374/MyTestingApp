@@ -1,5 +1,6 @@
 package com.example.dima.mytestingapp.Activitys;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -41,14 +43,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText edName, edSurname, edPatronymic, edMobile, edEmail, edPassword, edLogin;
+    TextInputLayout inputLayoutName, inputLayoutMobile, inputLayoutEmail,
+            inputLayoutPassword, inputLayoutLogin, inputLayoutDateOfBirth;
+
+    EditText edName, edMobile, edEmail, edPassword, edLogin;
     EditText edDateOfBirth;
 
-    Spinner edGender;
-
     Button btnRegister;
-
-    String gender;
 
     int countEmail = 0;  //  Колисество строк в таблице "user" гле одинаковый email (если > 0, то выводим Toast)
     int countLogin = 0;  //  Колисество строк в таблице "user" гле одинаковый login (если > 0, то выводим Toast)
@@ -60,15 +61,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 //    Для запоминания вхождения в аккаунт
     SharedPreferences sPref;
-    Boolean loginPref;
     final String SAVED_TEXT = "saved_text";
 
     SharedPreferences sPrefLogin, sPrefUserName, sPrefEmail, sPrefPassword;
-
-    String sLogin;  // SharedPreferences для login
-    String sUserName;  // SharedPreferences для userName
-    String sEmail;  // SharedPreferences для email
-
 
     int DIALOG_DATE = 1;
 //    int myYear = 2011;
@@ -83,8 +78,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     DBHelper dbHelper;  // Объект базы данных
 
-    String email;
-    String login;
+    String email = "";
+    String login = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +90,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        inputLayoutName = (TextInputLayout) findViewById(R.id.input_layout_name);
+        inputLayoutMobile = (TextInputLayout) findViewById(R.id.input_layout_phone);
+        inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
+        inputLayoutDateOfBirth = (TextInputLayout) findViewById(R.id.input_layout_date_of_birth);
+        inputLayoutLogin = (TextInputLayout) findViewById(R.id.input_layout_login);
+        inputLayoutPassword = (TextInputLayout) findViewById(R.id.input_layout_password);
+
         edName = (EditText) findViewById(R.id.edName);
-        edSurname = (EditText) findViewById(R.id.edSurname);
-        edPatronymic = (EditText) findViewById(R.id.edPatronymic);
 
         edDateOfBirth = (EditText) findViewById(R.id.edDateOfBirth);
         edDateOfBirth.setOnClickListener(this);
@@ -107,13 +108,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edMobile = (EditText) findViewById(R.id.edMobile);
 //        Формат ввода номера
         edMobile.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-        edMobile.setMaxLines(16); // ?????????
+        edMobile.setMaxLines(16);
 
         edEmail = (EditText) findViewById(R.id.edEmail);
         edPassword = (EditText) findViewById(R.id.edPassword);
         edLogin = (EditText) findViewById(R.id.edLogin);
-
-        edGender = (Spinner) findViewById(R.id.edGender);
 
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(this);
@@ -182,20 +181,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-//        Обработка Spinner Пол
-        edGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("myLogs", String.valueOf(parent.getItemAtPosition(position)));
-                gender = String.valueOf(parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
 //        Закрытие onCreate
     }
 
@@ -248,8 +233,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
 
         String name = edName.getText().toString().trim();
-        String surname = edSurname.getText().toString().trim();
-        String patronymic = edPatronymic.getText().toString().trim();
 //        Поле gender глобальная переменная
 
         String dateOfBirth = edDateOfBirth.getText().toString().trim();
@@ -261,6 +244,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         email = edEmail.getText().toString().trim();
         login = edLogin.getText().toString().trim();
         String password = edPassword.getText().toString().trim();
+
+//        String mobile = "";
+//        String password = "";
+//        try{
+//            mobile = edMobile.getText().toString().replaceAll("^(\\+7)|\\D+","").trim();
+//            email = edEmail.getText().toString().trim();
+//            login = edLogin.getText().toString().trim();
+//            password = edPassword.getText().toString().trim();
+//        } catch (java.lang.NullPointerException e){
+//            Toast.makeText(this, "Заполните поля ввода", Toast.LENGTH_SHORT).show();
+//        }
 
 //        -----------------------------------------------------------------------------------
 
@@ -348,14 +342,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                    + " gender = " + gender + " mobile = " + mobile + " email = " + email
 //                    + " login = " + login + " password = " + password);
 
-                Log.d("myLogs", "name = " + name + " surname = " + surname + " ochestvo = " + patronymic
+                Log.d("myLogs", "name = " + name
                         + " dateOfBirth = " + dateOfBirth
-                        + " gender = " + gender + " mobile = " + mobile + " email = " + email
+                        + " mobile = " + mobile + " email = " + email
                         + " login = " + login + " password = " + password);
 
-                if ((name.equals("")) || (surname.equals("")) || (patronymic.equals("")) || (gender.equals(""))
-                        || mobile.equals("") || (email.equals("")) || (password.equals(""))
-                        || (login.equals(""))){
+                if ((name.equals("")) || mobile.equals("") || (email.equals(""))
+                        || (password.equals("")) || (login.equals(""))){
                     Toast toast = Toast.makeText(this, "Заполние все поля !!!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 320);
                     toast.show();
@@ -390,25 +383,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 else {
 
 //                    Запись данных на сервер
-                    Call<List<ItemServerData>> callData = serverApi.saveDataUser(name, surname, patronymic, gender, dateOfBirth,
+                    Call<List<ItemServerData>> callData = serverApi.saveDataUser(name, dateOfBirth,
                             mobile, email, login, password, "0");
 
                     callData.enqueue(new Callback<List<ItemServerData>>() {
                         @Override
                         public void onResponse(Call<List<ItemServerData>> call, Response<List<ItemServerData>> response) {
 
-                            Toast.makeText(RegisterActivity.this, "All is OK !!!", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(RegisterActivity.this, "All is OK !!!", Toast.LENGTH_SHORT).show();
 
-                            String sName = null, sSurname = null, sPatronymic = null, sGender = null,
-                                    sDateOfBirth = null, sMobilePhone = null,
+                            String sName = null, sDateOfBirth = null, sMobilePhone = null,
                                     sEmail = null, sLogin = null, sPassword = null, sKeySign = null;
 
 //                            Прием данных обратно с сервера
                             for (int i = 0; i < response.body().size(); i++){
                                 sName = response.body().get(i).getName();
-                                sSurname = response.body().get(i).getSurname();
-                                sPatronymic = response.body().get(i).getPatronymic();
-                                sGender = response.body().get(i).getGender();
                                 sDateOfBirth = response.body().get(i).getDateOfBirth();
                                 sMobilePhone = response.body().get(i).getMobilePhone();
                                 sEmail = response.body().get(i).getEmail();
@@ -418,9 +407,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             }
 
                             contentValues.put(DBHelper.KEY_NAME, sName);
-                            contentValues.put(DBHelper.KEY_SURNAME, sSurname);
-                            contentValues.put(DBHelper.KEY_PATRONYMIC, sPatronymic);
-                            contentValues.put(DBHelper.KEY_GENDER, sGender);
                             contentValues.put(DBHelper.KEY_DATE_OF_BIRTH, sDateOfBirth);
                             contentValues.put(DBHelper.KEY_MOBILE, sMobilePhone);
                             contentValues.put(DBHelper.KEY_EMAIL, sEmail);

@@ -8,6 +8,7 @@
     <color name="colorAccent">#FF4081</color>
     <!--<color name="colorLine">#33ff00</color>-->
     <color name="colorLine">#2eb302</color>
+    <color name="colorLineGrey">#a7a7a7</color>
 
     <color name="accent">#78909c</color>
     <color name="fab_pressed">#546e7a</color>
@@ -29,5 +30,7 @@
     <color name="orange">#FF9900</color>
     <color name="green">#009900</color>
     <color name="red">#ed000c</color>
+
+    <color name="card">#b3b3b3</color>
 
 </resources>

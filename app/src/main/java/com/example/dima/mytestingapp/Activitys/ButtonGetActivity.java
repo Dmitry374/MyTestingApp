@@ -36,6 +36,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static java.lang.Thread.currentThread;
+
 public class ButtonGetActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvBtnGetName;
@@ -45,7 +47,7 @@ public class ButtonGetActivity extends AppCompatActivity implements View.OnClick
     Button btnGetApply;
     Button btnGetCancel;
     Button btnGetStatistics;
-    Button btnGetChart;
+//    Button btnGetChart;
 
     String btnName;
 
@@ -125,8 +127,8 @@ public class ButtonGetActivity extends AppCompatActivity implements View.OnClick
         btnGetCancel.setOnClickListener(this);
         btnGetStatistics = (Button) findViewById(R.id.btnGetStatistics);
         btnGetStatistics.setOnClickListener(this);
-        btnGetChart = (Button) findViewById(R.id.btnGetChart);
-        btnGetChart.setOnClickListener(this);
+//        btnGetChart = (Button) findViewById(R.id.btnGetChart);
+//        btnGetChart.setOnClickListener(this);
 
         tvBtnGetName = (TextView) findViewById(R.id.tvBtnGetName);
 
@@ -135,7 +137,7 @@ public class ButtonGetActivity extends AppCompatActivity implements View.OnClick
 
         tvBtnGetName.setText("Название раздела - " +  btnName);
 
-        btnGetChart.setText("График по " + btnName);
+//        btnGetChart.setText("График по " + btnName);
 
         btnGetStatistics.setText("Статистика по " + btnName);
 
@@ -1043,8 +1045,6 @@ public class ButtonGetActivity extends AppCompatActivity implements View.OnClick
 //                        } while (cursor.moveToNext());
 //                    }
 //                    cursor.close();
-
-
 
 
                     setResult(RESULT_OK, intent);
