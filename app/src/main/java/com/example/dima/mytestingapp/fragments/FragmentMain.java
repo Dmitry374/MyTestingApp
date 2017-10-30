@@ -792,9 +792,15 @@ public class FragmentMain extends Fragment {
 
                 gridViewGet = (MyGridView) viewLayoutGet.findViewById(R.id.gridViewGet);
 
-                gridAdapterGet = new GridAdapter(getActivity(), R.id.tvBtnName, R.id.imgBtn, R.id.tvBtnOnCount, listGet);
+                try{
+                    gridAdapterGet = new GridAdapter(getActivity(), R.id.tvBtnName, R.id.imgBtn, R.id.tvBtnOnCount, listGet);
 
-                gridViewGet.setAdapter(gridAdapterGet);
+                    gridViewGet.setAdapter(gridAdapterGet);
+
+                } catch (java.lang.NullPointerException e){
+                    Log.d("logSleep", "Sleep");
+                    listGet.removeAll(listGet);
+                }
 
 
             }
@@ -876,9 +882,15 @@ public class FragmentMain extends Fragment {
 
                 gridViewSpend = (MyGridView) viewLayoutGet.findViewById(R.id.gridViewSpend);
 
-                gridAdapterSpend = new GridAdapter(getActivity(), R.id.tvBtnName, R.id.imgBtn, R.id.tvBtnOnCount, listSpend);
+                try{
+                    gridAdapterSpend = new GridAdapter(getActivity(), R.id.tvBtnName, R.id.imgBtn, R.id.tvBtnOnCount, listSpend);
 
-                gridViewSpend.setAdapter(gridAdapterSpend);
+                    gridViewSpend.setAdapter(gridAdapterSpend);
+
+                } catch (java.lang.NullPointerException e){
+                    Log.d("logSleep", "Sleep");
+                    listSpend.removeAll(listSpend);
+                }
 
 
 
