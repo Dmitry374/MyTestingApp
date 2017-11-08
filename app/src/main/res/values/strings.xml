@@ -23,6 +23,12 @@
     <string name="title_activity_hello_user_splash">HelloUserSplashActivity</string>
     <string name="title_activity_user">UserActivity</string>
 
+    <string name="nav_menu_item_main">Главная</string>
+    <string name="nav_menu_item_credit_calc">Кредитный калькулятор</string>
+    <string name="nav_menu_item_statistic">Статистика</string>
+    <string name="nav_menu_item_reminder">Напоминалка</string>
+    <string name="nav_menu_item_exchange_rates">Курсы валют</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

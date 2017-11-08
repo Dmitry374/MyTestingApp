@@ -90,17 +90,14 @@ public class FragmentKreditCalc extends Fragment /*android.app.Fragment*/ implem
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentKreditCalc.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentKreditCalc newInstance(String param1, String param2) {
+    public static FragmentKreditCalc newInstance(String text) {
         FragmentKreditCalc fragment = new FragmentKreditCalc();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        Bundle mBundle = new Bundle();
+        mBundle.putString("FragmentKreditCalc", text);
+        fragment.setArguments(mBundle);
         return fragment;
     }
 

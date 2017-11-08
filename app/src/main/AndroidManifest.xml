@@ -68,7 +68,7 @@
         <activity
             android:name=".Activitys.AddReminderActivity"
             android:label="@string/title_activity_add_reminder"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activitys.ReminderEditActivity"
             android:label="@string/title_activity_edit_reminder"
@@ -78,7 +78,7 @@
 
         <receiver
             android:name=".AlarmReceiver"
-            android:enabled="true"></receiver>
+            android:enabled="true" />
         <receiver android:name=".BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -89,7 +89,7 @@
             android:name=".Activitys.RatesCalcActivity"
             android:label="@string/title_activity_rates_calc"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -30,7 +30,7 @@ public class HelloUserSplashActivity extends AppCompatActivity {
     SharedPreferences sPrefLogin, sPrefUserName, sPrefEmail;
 
     String sLogin;  // SharedPreferences для login
-    String sUserName;  // SharedPreferences для userName
+    String sUserName;  // SharedPreferences для userNameRes
     String sEmail;  // SharedPreferences для email
 
     @Override
@@ -44,10 +44,10 @@ public class HelloUserSplashActivity extends AppCompatActivity {
 //        Приниммаем имя из LoginActivity или RegisterActivity(предыдущее Activity)
         Intent intent = getIntent();
         login = intent.getStringExtra("login");
-        userName = intent.getStringExtra("userName");
+        userName = intent.getStringExtra("userNameRes");
         email = intent.getStringExtra("email");
 
-//        Toast.makeText(this, login + " " + userName + " " + email, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, login + " " + userNameRes + " " + email, Toast.LENGTH_SHORT).show();
 
 
 
@@ -64,7 +64,7 @@ public class HelloUserSplashActivity extends AppCompatActivity {
 //
 //        sPrefUserName = getSharedPreferences("SharedPrefUserName",MODE_PRIVATE);
 //        SharedPreferences.Editor edPrefUserName = sPrefUserName.edit();
-//        edPrefUserName.putString("save_user_name", userName);
+//        edPrefUserName.putString("save_user_name", userNameRes);
 //        edPrefUserName.commit();
 //
 //        sPrefEmail = getSharedPreferences("SharedPrefEmail",MODE_PRIVATE);
@@ -166,10 +166,10 @@ public class HelloUserSplashActivity extends AppCompatActivity {
                                       public void run() {
                                           Intent i = new Intent(HelloUserSplashActivity.this, UserActivity.class);
 //                Повторно отправляем значение в UserActivity(след. Activity)
-                                          i.putExtra("userName", userName);
+                                          i.putExtra("userNameRes", userName);
                                           i.putExtra("login", login);
                                           i.putExtra("email", email);
-//                                          i.putExtra("userName", sUserName);
+//                                          i.putExtra("userNameRes", sUserName);
 //                                          i.putExtra("login", sLogin);
 //                                          i.putExtra("email", sEmail);
 

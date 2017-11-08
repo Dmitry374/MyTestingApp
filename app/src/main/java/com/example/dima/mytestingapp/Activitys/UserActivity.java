@@ -10,31 +10,28 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dima.mytestingapp.AlarmReceiver;
 import com.example.dima.mytestingapp.DBHelper;
 import com.example.dima.mytestingapp.R;
 import com.example.dima.mytestingapp.api.ServerApi;
+import com.example.dima.mytestingapp.fragments.FragmentExchangeRates;
 import com.example.dima.mytestingapp.fragments.FragmentKreditCalc;
 import com.example.dima.mytestingapp.fragments.FragmentMain;
 import com.example.dima.mytestingapp.fragments.FragmentReminder;
 import com.example.dima.mytestingapp.fragments.FragmentStatistic;
-import com.example.dima.mytestingapp.fragments.FragmentExchangeRates;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -49,33 +46,27 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import br.liveo.interfaces.OnItemClickListener;
+import br.liveo.interfaces.OnPrepareOptionsMenuLiveo;
+import br.liveo.model.HelpLiveo;
+import br.liveo.model.Navigation;
+import br.liveo.navigationliveo.NavigationLiveo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class UserActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class UserActivity extends NavigationLiveo implements OnItemClickListener {
 
-    FragmentMain fmain;
-    FragmentKreditCalc fkrditcalk;
-    FragmentStatistic fstatistic;
-    FragmentReminder freminder;
-    FragmentExchangeRates fexhangerate;
-
-    TextView tvUserName;
-    TextView emailUser;
-
-//    String login;
     public String login;
-    String userName;
+    String userNameRes;
     String email;
 
     DBHelper dbHelper;
     SQLiteDatabase db;
 
-//    Для проверки вхождения в аккаунт
+    //    Для проверки вхождения в аккаунт
     SharedPreferences sPref;
     Boolean loginPref;
     final String SAVED_TEXT = "saved_text";
@@ -84,11 +75,10 @@ public class UserActivity extends AppCompatActivity
     SharedPreferences sPrefLogin, sPrefUserName, sPrefEmail, sPrefSelection;
 
     String sLogin;  // SharedPreferences для login
-    String sUserName;  // SharedPreferences для userName
+    String sUserName;  // SharedPreferences для userNameRes
     String sEmail;  // SharedPreferences для email
 
     AlertDialog.Builder ad;
-    AlertDialog.Builder adNoSynchroniseData;
 
     final int REQUEST_CODE_LIST = 1;
 
@@ -120,13 +110,13 @@ public class UserActivity extends AppCompatActivity
 
     String[] arrayReminderInsert, arrayReminderUpdate, arrayReminderDelete;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
+    private HelpLiveo mHelpLiveo;
+
+    @Override
+    public void onInt(Bundle savedInstanceState) {
+
+//        --------------- onCreate (Instead) -----------------------------
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
 
@@ -165,50 +155,24 @@ public class UserActivity extends AppCompatActivity
 
 
 //        Вставка иконки в Action Bar
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayUseLogoEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        fmain = new FragmentMain();
-        fkrditcalk = new FragmentKreditCalc();
-        fstatistic = new FragmentStatistic();
-        freminder = new FragmentReminder();
-        fexhangerate = new FragmentExchangeRates();
-
-//        Определение Header для его измениния
-        View header = navigationView.getHeaderView(0);
-
-        tvUserName = (TextView)header.findViewById(R.id.tvUserName);
-        emailUser = (TextView)header.findViewById(R.id.emailUser);
-
-//        Intent intent = getIntent();
-//        login = intent.getStringExtra("login");
-//        userName = intent.getStringExtra("userName");
-//        email = intent.getStringExtra("email");
 
 //        Извлечение полей из SharedPreferences !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         sPrefLogin = getSharedPreferences("SharedPrefLogin",MODE_PRIVATE);
         login = sPrefLogin.getString("save_login", "");
 
         sPrefUserName = getSharedPreferences("SharedPrefUserName", MODE_PRIVATE);
-        userName = sPrefUserName.getString("save_user_name", "");
+        userNameRes = sPrefUserName.getString("save_user_name", "");
 
         sPrefEmail = getSharedPreferences("SharedPrefEmail", MODE_PRIVATE);
         email = sPrefEmail.getString("save_email", "");
 
-//        Toast.makeText(this, login + " " + userName + " " + email, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, login + " " + userNameRes + " " + email, Toast.LENGTH_SHORT).show();
 
 
         contentValues = new ContentValues();
-
 
 //        --------------------------- Всплывающее окно Alert Dialog -----------------------
         Context context = UserActivity.this;
@@ -296,147 +260,152 @@ public class UserActivity extends AppCompatActivity
 
 //        -----------------------------------------------------------------------------------------
 
-
-
-
-        //        --------------------------- Всплывающее окно Alert Dialog -----------------------
-        context = UserActivity.this;
-
-        title = "Внимание !!!";
-        message = "Есть несинхронизированные данные !!!\nЕсли Вы сейчас выйдете несинхронизированные данные будут утеряны !!!\n"
-                + "Подключитесь к Интернету для синхронизайии !!!";
-        buttonYes = "Выйти";
-        buttonNo = "Вернуться";
-
-        adNoSynchroniseData = new AlertDialog.Builder(context);
-        adNoSynchroniseData.setTitle(title);
-        adNoSynchroniseData.setMessage(message);
-        adNoSynchroniseData.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //            При выходе, пременная запоминающая было ли вхождение аккаунт принимает значение FALSE
-                sPref = getSharedPreferences("LoginPref", MODE_PRIVATE);
-                SharedPreferences.Editor ed = sPref.edit();
-                ed.putBoolean(SAVED_TEXT, false);
-                ed.commit();
-
-//            ------------- Обнуляются данные пользователя, что бы не отображались в LoginActivity --------------------
-                sPrefLogin = getSharedPreferences("SharedPrefLogin",MODE_PRIVATE);
-                SharedPreferences.Editor edPrefLogin = sPrefLogin.edit();
-                edPrefLogin.putString("save_login", "");
-                edPrefLogin.commit();
-
-                sPrefUserName = getSharedPreferences("SharedPrefUserName",MODE_PRIVATE);
-                SharedPreferences.Editor edPrefUserName = sPrefUserName.edit();
-                edPrefUserName.putString("save_user_name", "");
-                edPrefUserName.commit();
-
-                sPrefEmail = getSharedPreferences("SharedPrefEmail",MODE_PRIVATE);
-                SharedPreferences.Editor edPrefEmail = sPrefEmail.edit();
-                edPrefEmail.putString("save_email", "");
-                edPrefEmail.commit();
-//            -----------------------------------------------------------------------
-
-
-//                --------------------------- Закрываем все уведомления ----------------------
-                AlarmReceiver mAlarmReceiver = new AlarmReceiver();
-
-                ArrayList<Integer> itemIds = new ArrayList<>();
-
-                String sql = "SELECT " + DBHelper.KEY_REMINDER_ID + " FROM " + DBHelper.TABLE_REMINDER
-                        + " WHERE " + DBHelper.KEY_REMINDER_REF_LOGIN + " =?";
-                Cursor cursor = db.rawQuery(sql, new String[]{login});
-
-                if (cursor.moveToFirst()) {
-                    int idKeyIndex = cursor.getColumnIndex(DBHelper.KEY_REMINDER_ID);
-                    do {
-                        itemIds.add(cursor.getInt(idKeyIndex));
-                    } while (cursor.moveToNext());
-                }
-                cursor.close();
-
-                mAlarmReceiver.cancelAlarm(UserActivity.this, itemIds);
-//                ----------------------------------------------------------------------------
-
-//                Очистка базы данных
-                dbHelper.dropTables(db);
-
-                deleteFile("reminder_insert.txt");
-                deleteFile("reminder_update.txt");
-                deleteFile("reminder_delete.txt");
-
-
-                Intent intent = new Intent(UserActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        adNoSynchroniseData.setNegativeButton(buttonNo, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-//        -----------------------------------------------------------------------------------------
-
-        tvUserName.setText(userName);
-        emailUser.setText(email);
-
-
         intent = getIntent();
         fragmentName = intent.getStringExtra("name_fragment");
 
 
-//        При вхождении в приложение первый раз открывает FragmentMain
-        SharedPreferences sp = getSharedPreferences("SignFirst", MODE_PRIVATE);
-        boolean signFirst = sp.getBoolean("signFirst", true);
-
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_user, fmain);
-        fragmentTransaction.commit();
 
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment mFragment = null;
 
-        Log.d("myLogs", "fragmentName = " + fragmentName);
 
-//        По умолчанию открывается Главная, в остальных случаях принимается Intent и открывается нужная страница
-//        getSupportActionBar().setTitle("Главная");
-        try {
+        try{
+
             if (fragmentName.equals("fmain")){
-                fragmentTransaction.replace(R.id.content_user, fmain);
+                mFragment = FragmentMain.newInstance(mHelpLiveo.get(0).getName());
             }
 
             if (fragmentName.equals("fkrditcalk")){
-                fragmentTransaction.replace(R.id.content_user, fkrditcalk);
+                mFragment = FragmentKreditCalc.newInstance(mHelpLiveo.get(1).getName());
             }
 
             if (fragmentName.equals("freminder")){
-                fragmentTransaction.replace(R.id.content_user, freminder);
+                mFragment = FragmentReminder.newInstance(mHelpLiveo.get(3).getName());
             }
 
             if (fragmentName.equals("frates")){
-                fragmentTransaction.replace(R.id.content_user, fexhangerate);
+                mFragment = FragmentExchangeRates.newInstance(mHelpLiveo.get(4).getName());
             }
-            fragmentTransaction.commit();
+
+            if (mFragment != null){
+                fragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
+            }
         } catch (java.lang.NullPointerException e){
-            fragmentTransaction.replace(R.id.content_user, fmain);
-            fragmentTransaction.commit();
+
         }
 
+
+//        ----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+        // User Information
+        this.userName.setText(userNameRes);
+        this.userEmail.setText(email);
+        this.userPhoto.setImageResource(R.drawable.profile_img);
+//        this.userPhoto.setImageResource(R.drawable.ic_rudsonlive);
+        this.userBackground.setImageResource(R.drawable.bcg1);
+//        this.userBackground.setImageResource(R.drawable.ic_user_background_first);
+
+        // Creating items navigation
+        mHelpLiveo = new HelpLiveo();
+        mHelpLiveo.add(getString(R.string.nav_menu_item_main), R.drawable.ic_main_24dp);
+//        mHelpLiveo.addSubHeader(getString(R.string.categories)); //Item subHeader
+        mHelpLiveo.add(getString(R.string.nav_menu_item_credit_calc), R.drawable.ic_kred_kalc_24dp);
+        mHelpLiveo.add(getString(R.string.nav_menu_item_statistic), R.drawable.ic_statistic_black_24dp);
+        mHelpLiveo.add(getString(R.string.nav_menu_item_reminder), R.drawable.ic_reminder_black_24dp);
+        mHelpLiveo.add(getString(R.string.nav_menu_item_exchange_rates), R.drawable.ic_exchange_rate_24dp);
+//        mHelpLiveo.addSeparator(); // Item separator
+
+        with(this, Navigation.THEME_DARK);   //. add theme dark
+        //with(this, Navigation.THEME_LIGHT). add theme light
+
+        with(this) // default theme is dark
+                .startingPosition(0) //Starting position in the list
+                .addAllHelpItem(mHelpLiveo.getHelp())
+//                .colorItemSelected(R.color.nliveo_blue_colorPrimary)
+                .colorItemSelected(R.color.colorPrimary)
+//                .footerItem(R.string.action_settings, R.drawable.ic_main_24dp)
+                .selectorCheck(R.color.selectedNavDrawerItem)
+                .backgroundList(R.color.navDrawer)
+                .setOnClickUser(onClickPhoto)
+                .setOnPrepareOptionsMenu(onPrepare)
+                .setOnClickFooter(onClickFooter)
+                .build();
+
+        int position = this.getCurrentPosition();
+        this.setElevationToolBar(position != 2 ? 15 : 0);
     }
+
+    @Override //The "R.id.container" should be used in "beginTransaction (). Replace"
+    public void onItemClick(int position) {
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+
+        Fragment mFragment;
+
+        switch (position){
+            case 0:
+                mFragment = FragmentMain.newInstance(mHelpLiveo.get(position).getName());
+                break;
+            case 1:
+                mFragment = FragmentKreditCalc.newInstance(mHelpLiveo.get(position).getName());
+                break;
+            case 2:
+                mFragment = FragmentStatistic.newInstance(mHelpLiveo.get(position).getName());
+                break;
+            case 3:
+                mFragment = FragmentReminder.newInstance(mHelpLiveo.get(position).getName());
+                break;
+            case 4:
+                mFragment = FragmentExchangeRates.newInstance(mHelpLiveo.get(position).getName());
+                break;
+            default:
+                mFragment = FragmentMain.newInstance(mHelpLiveo.get(position).getName());
+                break;
+        }
+
+        if (mFragment != null){
+            fragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
+        }
+
+        setElevationToolBar(position != 2 ? 15 : 0);
+    }
+
+    private OnPrepareOptionsMenuLiveo onPrepare = new OnPrepareOptionsMenuLiveo() {
+        @Override
+        public void onPrepareOptionsMenu(Menu menu, int position, boolean visible) {
+        }
+    };
+
+    private View.OnClickListener onClickPhoto = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(), "My Profile Photo ;)", Toast.LENGTH_SHORT).show();
+            closeDrawer();
+        }
+    };
+
+    private View.OnClickListener onClickFooter = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            closeDrawer();
+        }
+    };
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        super.onBackPressed();
 
+        if(isDrawerOpen()){
+            closeDrawer();
+        } else {
 //            Ставится в настройки для диалога валют выбор индекса с EUR
             sPrefSelection = getSharedPreferences("SharedPrefSelection",MODE_PRIVATE);
             SharedPreferences.Editor edPrefSelection = sPrefSelection.edit();
@@ -445,7 +414,7 @@ public class UserActivity extends AppCompatActivity
 
 //              Выход из всего приложения
 //          finishAffinity();
-            ActivityCompat.finishAffinity (this);
+            ActivityCompat.finishAffinity(this);
         }
 
     }
@@ -486,80 +455,6 @@ public class UserActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-//    Метод проверяющий синхронизацию данных с локальной бд
-    private boolean isSynchroniseData() {
-        boolean isSynchronise = true;
-
-        String sql = "select * from " + DBHelper.TABLE_USER
-                + " where " + DBHelper.KEY_SYNCHRONISE + " =?";
-        Cursor cursor = db.rawQuery(sql, new String[]{"no"});
-
-
-        if (cursor.getCount() > 0){
-            isSynchronise = false;
-        }
-
-        sql = "select * from " + DBHelper.TABLE_GET
-                + " where " + DBHelper.KEY_REF_LOGIN + " =? AND " + DBHelper.KEY_GET_SYNCHRONISE + " =? or "
-                + DBHelper.KEY_GET_SYNCHRONISE + " = ? or "
-                + DBHelper.KEY_GET_SYNCHRONISE + " = ?";
-        cursor = db.rawQuery(sql, new String[]{login, "no", "ins", "deleted"});
-
-
-        if (cursor.getCount() > 0){
-            isSynchronise = false;
-        }
-
-        sql = "select * from " + DBHelper.TABLE_SPEND
-                + " where " + DBHelper.KEY_REF_LOGIN_SPEND + " =? AND " + DBHelper.KEY_SPEND_SYNCHRONISE + " =? or "
-                + DBHelper.KEY_SPEND_SYNCHRONISE + " = ? or "
-                + DBHelper.KEY_SPEND_SYNCHRONISE + " = ?";
-        cursor = db.rawQuery(sql, new String[]{login, "no", "ins", "deleted"});
-
-
-        if (cursor.getCount() > 0){
-            isSynchronise = false;
-        }
-
-        sql = "select * from " + DBHelper.TABLE_GET_FOR_TOTAL
-                + " where " + DBHelper.KEY_REF_LOGIN_TOTAL_GET + " =? AND " + DBHelper.KEY_TOTAL_SYNCHRONISE + " =?";
-        cursor = db.rawQuery(sql, new String[]{login, "no"});
-
-
-        if (cursor.getCount() > 0){
-            isSynchronise = false;
-        }
-
-        sql = "select * from " + DBHelper.TABLE_STATISTIC
-                + " where " + DBHelper.KEY_STATISTIC_REF_LOGIN + " =? AND " + DBHelper.KEY_STATISTIC_SYNCHRONISE + " =? or "
-                + DBHelper.KEY_STATISTIC_SYNCHRONISE + " = ? or "
-                + DBHelper.KEY_STATISTIC_SYNCHRONISE + " = ?";
-        cursor = db.rawQuery(sql, new String[]{login, "no", "ins", "deleted"});
-
-
-        if (cursor.getCount() > 0){
-            isSynchronise = false;
-        }
-
-        cursor.close();
-
-
-        if (checkFile("reminder_insert.txt")){
-            isSynchronise = false;
-        }
-
-        if (checkFile("reminder_update.txt")){
-            isSynchronise = false;
-        }
-
-        if (checkFile("reminder_delete.txt")){
-            isSynchronise = false;
-        }
-
-        return isSynchronise;
-    }
-
-// ------------------------------------------------------------------------------------------------------------------------------
     private boolean checkFile(String filename) {
         boolean isExists;
         File file = new File(filename);
@@ -572,47 +467,15 @@ public class UserActivity extends AppCompatActivity
         return isExists;
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        if (id == R.id.nav_main) {
-            //Toast.makeText(this, "Главная", Toast.LENGTH_SHORT).show();
-            fragmentTransaction.replace(R.id.content_user, fmain);
-        }
-        else if (id == R.id.nav_kredit_kalc) {
-            fragmentTransaction.replace(R.id.content_user, fkrditcalk);
-        } else if (id == R.id.nav_statistic) {
-            fragmentTransaction.replace(R.id.content_user, fstatistic);
-        } else if (id == R.id.nav_reminder) {
-            fragmentTransaction.replace(R.id.content_user, freminder, "FragmentReminder");
-        } else if (id == R.id.nav_exchange_rate) {
-            fragmentTransaction.replace(R.id.content_user, fexhangerate);
-        }
-        fragmentTransaction.commit();
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
-
 
     private class MyTimerTask extends TimerTask {
 
@@ -623,6 +486,7 @@ public class UserActivity extends AppCompatActivity
 
         }
     }
+
 
     public void uploadToServer() {
 
@@ -1430,6 +1294,13 @@ public class UserActivity extends AppCompatActivity
 
         return array;
     }
+
+
+
+
+
+
+
 
 
 }

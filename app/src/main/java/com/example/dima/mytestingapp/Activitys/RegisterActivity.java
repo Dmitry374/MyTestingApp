@@ -89,6 +89,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+                finish();
+            }
+        });
 
 
         inputLayoutName = (TextInputLayout) findViewById(R.id.input_layout_name);
@@ -443,7 +452,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                    Переход на Activity с заставкой
                             Intent intent = new Intent(RegisterActivity.this, HelloUserSplashActivity.class);
                             intent.putExtra("login", sLogin);
-                            intent.putExtra("userName", sName);
+                            intent.putExtra("userNameRes", sName);
                             intent.putExtra("email", sEmail);
                             startActivity(intent);
                             finish();  //  Завершает активность

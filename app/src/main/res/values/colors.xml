@@ -33,4 +33,8 @@
 
     <color name="card">#b3b3b3</color>
 
+    <color name="navDrawer">#e2dfdf</color>
+    <color name="selectedNavDrawerItem">#c1bfbf</color>
+    <color name="colTextNav">#d2ff2323</color>
+
 </resources>

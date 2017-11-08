@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences sPrefLogin, sPrefUserName, sPrefEmail, sPrefPassword;
 
     String sLogin;  // SharedPreferences для login
-    String sUserName;  // SharedPreferences для userName
+    String sUserName;  // SharedPreferences для userNameRes
     String sEmail;  // SharedPreferences для email
 
     private long mRepeatTime;
@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        Если пользователь не вышел из аккаунта
         if (loginPref){
             Intent intent = new Intent(this, UserActivity.class);
-            intent.putExtra("userName", sUserName);
+            intent.putExtra("userNameRes", sUserName);
             intent.putExtra("login", sLogin);
             intent.putExtra("email", sEmail);
             startActivity(intent);
@@ -516,7 +516,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         Intent intent = new Intent(LoginActivity.this, HelloUserSplashActivity.class);
                         intent.putExtra("login", loginFromServ);
-                        intent.putExtra("userName", nameFromServ);
+                        intent.putExtra("userNameRes", nameFromServ);
                         intent.putExtra("email", emailFromServ);
                         startActivity(intent);
 

@@ -178,17 +178,14 @@ public class FragmentMain extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentMain_11.
      */
     // TODO: Rename and change types and number of parameters
-    public FragmentMain newInstance(String param1, String param2) {
+    public static FragmentMain newInstance(String text) {
         FragmentMain fragment = new FragmentMain();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        Bundle mBundle = new Bundle();
+        mBundle.putString("FragmentMain", text);
+        fragment.setArguments(mBundle);
         return fragment;
     }
 
